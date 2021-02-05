@@ -17,7 +17,7 @@ SCREEN_HEIGHT = 600
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.sprite_image = pygame.image.load('sprite.gif')
+        self.sprite_image = pygame.image.load('player.png')
         self.spritex = 10
         self.spritey = 10
         # self.surf = pygame.Surface((75, 25))
