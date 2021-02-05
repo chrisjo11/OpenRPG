@@ -28,13 +28,13 @@ class Player(pygame.sprite.Sprite):
     # Move the sprite based on user keypresses
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:
-            self.spritey -= 1
+            self.spritey -= 0.5
         if pressed_keys[K_DOWN]:
-            self.spritey += 1
+            self.spritey += 0.5
         if pressed_keys[K_LEFT]:
-            self.spritex -= 1
+            self.spritex -= 0.5
         if pressed_keys[K_RIGHT]:
-            self.spritex += 1
+            self.spritex += 0.5
 
         # Keep player on the screen
         # if self.rect.left < 0:
