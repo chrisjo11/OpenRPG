@@ -18,6 +18,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
         self.sprite_image = pygame.image.load('player.png')
+        self.image = pygame.transform.scale(self.sprite_image,(50,50))
         self.spritex = 10
         self.spritey = 10
         # self.surf = pygame.Surface((75, 25))
@@ -110,7 +111,7 @@ while running:
     screen.fill((0, 0, 0))
 
     # Draw the player on the screen
-    screen.blit(player.sprite_image, (player.spritex, player.spritey))
+    screen.blit(player.image, (player.spritex, player.spritey))
 
     # Update the display
     pygame.display.flip()
