@@ -45,6 +45,15 @@ class Player(pygame.sprite.Sprite):
         # if self.rect.bottom >= SCREEN_HEIGHT:
         #     self.rect.bottom = SCREEN_HEIGHT
 
+        if self.spritex < 0:
+            self.spritex = 0
+        if self.spritex > SCREEN_WIDTH:
+            self.spritex = SCREEN_WIDTH
+        if self.spritey <= 0:
+            self.spritey = 0
+        if self.spritey >= SCREEN_HEIGHT:
+            self.spritey = SCREEN_HEIGHT
+
 # Define the enemy object by extending pygame.sprite.Sprite
 # The surface you draw on the screen is now an attribute of 'enemy'
 class Enemy(pygame.sprite.Sprite):
