@@ -46,6 +46,16 @@ class Player(pygame.sprite.Sprite):
             self.spritey = 0
         if self.spritey + 50 >= SCREEN_HEIGHT:
             self.spritey = SCREEN_HEIGHT - self.sprite_width
+        if self.spritex > self.rockx:
+            self.spritex = self.rockx
+
+class Obstacle(pygame.sprite.Sprite):
+    def __init__(self):
+        super(Player, self).__init__()
+        self.surf = pygame.Surface((75, 25))
+        self.surf.fill((255, 255, 255))
+        self.rect = self.surf.get_rect()
+
 
 
 # Initialize pygame
