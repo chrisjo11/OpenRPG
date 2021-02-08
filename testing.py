@@ -19,6 +19,8 @@ class Player(pygame.sprite.Sprite):
         super(Player, self).__init__()
         self.sprite_image = pygame.image.load('player.png')
         self.image = pygame.transform.scale(self.sprite_image,(50,50))
+        self.sprite_length = 50
+        self.sprite_width = 50
         self.spritex = 10
         self.spritey = 10
         # self.surf = pygame.Surface((75, 25))
@@ -35,24 +37,15 @@ class Player(pygame.sprite.Sprite):
             self.spritex -= 0.25
         if pressed_keys[K_RIGHT]:
             self.spritex += 0.25
-        # Keep player on the screen
-        # if self.rect.left < 0:
-        #     self.rect.left = 0
-        # if self.rect.right > SCREEN_WIDTH:
-        #     self.rect.right = SCREEN_WIDTH
-        # if self.rect.top <= 0:
-        #     self.rect.top = 0
-        # if self.rect.bottom >= SCREEN_HEIGHT:
-        #     self.rect.bottom = SCREEN_HEIGHT
 
         if self.spritex < 0:
             self.spritex = 0
-        if self.spritex > SCREEN_WIDTH:
-            self.spritex = SCREEN_WIDTH
+        if self.spritex + 50 > SCREEN_WIDTH:
+            self.spritex = SCREEN_WIDTH - self.sprite_length
         if self.spritey <= 0:
             self.spritey = 0
-        if self.spritey >= SCREEN_HEIGHT:
-            self.spritey = SCREEN_HEIGHT
+        if self.spritey + 50 >= SCREEN_HEIGHT:
+            self.spritey = SCREEN_HEIGHT - self.sprite_width
 
 # Define the enemy object by extending pygame.sprite.Sprite
 # The surface you draw on the screen is now an attribute of 'enemy'
