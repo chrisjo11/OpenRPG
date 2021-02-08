@@ -88,7 +88,7 @@ while running:
     player.update(pressed_keys)
 
     # Fill the screen with black
-    screen.fill((0, 0, 0))
+    screen.fill((50, 255, 50))
 
     # Draw the player on the screen
     screen.blit(player.image, (player.spritex, player.spritey))
