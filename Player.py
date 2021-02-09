@@ -8,12 +8,9 @@ import random
 # Updated to conform to flake8 and black standards
 from pygame.locals import *
 
-# Define constants for the screen width and height
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-
 # Define a player object by extending pygame.sprite.Sprite
 # The surface drawn on the screen is now an attribute of 'player'
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
@@ -24,9 +21,9 @@ class Player(pygame.sprite.Sprite):
         self.sprite_width = 50
         self.spritex = 10
         self.spritey = 10
-        # self.surf = pygame.Surface((75, 25))
-        # self.surf.fill((255, 255, 255))
-        # self.rect = self.surf.get_rect()
+        self.SCREEN_HEIGHT = 800
+        self.SCREEN_WIDTH = 600
+       
 
     # Move the sprite based on user keypresses
     def update(self, pressed_keys):
@@ -38,14 +35,16 @@ class Player(pygame.sprite.Sprite):
             self.spritex -= 0.3
         if pressed_keys[K_RIGHT]:
             self.spritex += 0.3
+    
+    def HittingWall(self, pressed_keys):
         if self.spritex < 0:
             self.spritex = 0
-        if self.spritex + 50 > SCREEN_WIDTH:
-            self.spritex = SCREEN_WIDTH - self.sprite_length
+        if self.spritex + 50 > self.SCREEN_WIDTH:
+            self.spritex = self.SCREEN_WIDTH - self.sprite_length
         if self.spritey <= 0:
             self.spritey = 0
-        if self.spritey + 50 >= SCREEN_HEIGHT:
-            self.spritey = SCREEN_HEIGHT - self.sprite_width
+        if self.spritey + 50 >= self.SCREEN_HEIGHT:
+            self.spritey = self.SCREEN_HEIGHT - self.sprite_width
 
 class Obstacle(pygame.sprite.Sprite):
     def __init__(self, obs_spritex, obs_spritey):

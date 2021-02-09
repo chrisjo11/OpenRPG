@@ -22,6 +22,9 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 player = Player()
 obstacle = Obstacle(0, 0)
 
+SCREEN_WIDTH = player.self.SCREEN_WIDTH
+SCREEN_HEIGHT = player.self.SCREEN_HEIGHT
+
 # Create groups to hold enemy sprites and all sprites
 # - enemies is used for collision detection and position updates
 # - all_sprites is used for rendering
@@ -50,6 +53,7 @@ while running:
 
     # Update the player sprite based on user keypresses
     player.update(pressed_keys)
+    player.HittingWall(pressed_keys)
 
     # Fill the screen with black
     screen.fill((50, 200, 50))
