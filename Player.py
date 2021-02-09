@@ -17,6 +17,7 @@ SCREEN_HEIGHT = 600
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
+        self.surf = pygame.Surface((75, 25))
         self.sprite_image = pygame.image.load('player.png')
         self.image = pygame.transform.scale(self.sprite_image,(50,50))
         self.sprite_length = 50
@@ -30,14 +31,13 @@ class Player(pygame.sprite.Sprite):
     # Move the sprite based on user keypresses
     def update(self, pressed_keys):
         if pressed_keys[K_UP]:
-            self.spritey -= 0.25
+            self.spritey -= 0.3
         if pressed_keys[K_DOWN]:
-            self.spritey += 0.25
+            self.spritey += 0.3
         if pressed_keys[K_LEFT]:
-            self.spritex -= 0.25
+            self.spritex -= 0.3
         if pressed_keys[K_RIGHT]:
-            self.spritex += 0.25
-
+            self.spritex += 0.3
         if self.spritex < 0:
             self.spritex = 0
         if self.spritex + 50 > SCREEN_WIDTH:
@@ -46,62 +46,12 @@ class Player(pygame.sprite.Sprite):
             self.spritey = 0
         if self.spritey + 50 >= SCREEN_HEIGHT:
             self.spritey = SCREEN_HEIGHT - self.sprite_width
-        if self.spritex > self.rockx:
-            self.spritex = self.rockx
 
 class Obstacle(pygame.sprite.Sprite):
-    def __init__(self):
-        super(Player, self).__init__()
-        self.surf = pygame.Surface((75, 25))
-        self.surf.fill((255, 255, 255))
-        self.rect = self.surf.get_rect()
-
-
-
-# Initialize pygame
-pygame.init()
-
-# Create the screen object
-# The size is determined by the constant SCREEN_WIDTH and SCREEN_HEIGHT
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
-# Instantiate player. Right now, this is just a rectangle.
-player = Player()
-
-# Create groups to hold enemy sprites and all sprites
-# - enemies is used for collision detection and position updates
-# - all_sprites is used for rendering
-enemies = pygame.sprite.Group()
-all_sprites = pygame.sprite.Group()
-all_sprites.add(player)
-
-# Variable to keep the main loop running
-running = True
-
-# Main loop
-while running:
-    # for loop through the event queue
-    for event in pygame.event.get():
-        # Check for KEYDOWN event
-        if event.type == KEYDOWN:
-            # If the Esc key is pressed, then exit the main loop
-            if event.key == K_ESCAPE:
-                running = False
-        # Check for QUIT event. If QUIT, then set running to false.
-        elif event.type == QUIT:
-            running = False
-
-    # Get the set of keys pressed and check for user input
-    pressed_keys = pygame.key.get_pressed()
-
-    # Update the player sprite based on user keypresses
-    player.update(pressed_keys)
-
-    # Fill the screen with black
-    screen.fill((50, 200, 50))
-
-    # Draw the player on the screen
-    screen.blit(player.image, (player.spritex, player.spritey))
-
-    # Update the display
-    pygame.display.flip()
+    def __init__(self, obs_spritex, obs_spritey):
+        self.obs_sprite_image = pygame.image.load('player.png')
+        self.image = pygame.transform.scale(self.obs_sprite_image,(50,50))
+        self.obs_sprite_length = 50
+        self.obs_sprite_width = 50
+        self.obs_spritex = obs_spritex
+        self.obs_spritey = obs_spritey
