@@ -1,6 +1,8 @@
 # Import the pygame module
 import pygame
 
+
+
 # Import random for random numbers
 import random
 
@@ -17,8 +19,8 @@ class Player(pygame.sprite.Sprite):
         self.surf = pygame.Surface((75, 25))
         self.sprite_image = pygame.image.load('player.png')
         self.image = pygame.transform.scale(self.sprite_image,(50,50))
-        self.sprite_length = 50
         self.sprite_width = 50
+        self.sprite_height = 50
         self.spritex = 10
         self.spritey = 10
         self.SCREEN_HEIGHT = 600
@@ -36,12 +38,26 @@ class Player(pygame.sprite.Sprite):
         if pressed_keys[K_RIGHT]:
             self.spritex += 0.3
     
-    def HittingWall(self, pressed_keys):
+    def checkHittingWall(self, pressed_keys):
         if self.spritex < 0:
             self.spritex = 0
-        if self.spritex + 50 > self.SCREEN_WIDTH:
-            self.spritex = self.SCREEN_WIDTH - self.sprite_length
+        if self.spritex + self.sprite_width > self.SCREEN_WIDTH:
+            self.spritex = self.SCREEN_WIDTH - self.sprite_width
         if self.spritey <= 0:
             self.spritey = 0
-        if self.spritey + 50 >= self.SCREEN_HEIGHT:
-            self.spritey = self.SCREEN_HEIGHT - self.sprite_width
+        if self.spritey + self.sprite_height >= self.SCREEN_HEIGHT:
+            self.spritey = self.SCREEN_HEIGHT - self.sprite_height
+    
+    def checkHittingObstacle(self, pressed_keys, obstacle):
+        #If it is hitting the left side
+        if self.spritex > obstacle.obs_spritex:
+            self.spritex = obstacle.obs_spritex
+        #If it is hitting the right side
+        if self.spritex + self.sprite_length < obstacle.obs_spritex + obstacle.obs_sprite_length:
+            self.spritex = obstacle.obs_spritex + obstacle.obs_sprite_length
+        #If it is hitting the top side
+        if self.spritey > obstacle.obs_spritey:
+            self.spritey = obstacle.obs_spritey
+        #If it is hitting the bottom
+        if self.spritey + self.sprite_width > self.obs:
+            self.spritey = obstacle.obs_spritey - obstacle.obs_sprite_width
