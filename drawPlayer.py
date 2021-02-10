@@ -9,7 +9,7 @@ import random
 from pygame.locals import *
 
 from Player import Player
-from Player import Obstacle
+from Obstacle import Obstacle
 
 # Initialize pygame
 pygame.init()
@@ -28,9 +28,9 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 # Create groups to hold enemy sprites and all sprites
 # - enemies is used for collision detection and position updates
 # - all_sprites is used for rendering
-enemies = pygame.sprite.Group()
 all_sprites = pygame.sprite.Group()
 all_sprites.add(player)
+all_sprite.add(obstacle)
 
 # Variable to keep the main loop running
 running = True
@@ -60,6 +60,7 @@ while running:
 
     # Draw the player on the screen
     screen.blit(player.image, (player.spritex, player.spritey))
+    screen.blit(player.image, ())
 
     # Update the display
     pygame.display.flip()
