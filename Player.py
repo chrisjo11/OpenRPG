@@ -21,8 +21,8 @@ class Player(pygame.sprite.Sprite):
         self.sprite_width = 50
         self.spritex = 10
         self.spritey = 10
-        self.SCREEN_HEIGHT = 800
-        self.SCREEN_WIDTH = 600
+        self.SCREEN_HEIGHT = 600
+        self.SCREEN_WIDTH = 800
        
 
     # Move the sprite based on user keypresses

@@ -14,16 +14,16 @@ from Player import Obstacle
 # Initialize pygame
 pygame.init()
 
-# Create the screen object
-# The size is determined by the constant SCREEN_WIDTH and SCREEN_HEIGHT
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
 # Instantiate player. Right now, this is just a rectangle.
 player = Player()
 obstacle = Obstacle(0, 0)
 
-SCREEN_WIDTH = player.self.SCREEN_WIDTH
-SCREEN_HEIGHT = player.self.SCREEN_HEIGHT
+SCREEN_WIDTH = player.SCREEN_WIDTH
+SCREEN_HEIGHT = player.SCREEN_HEIGHT
+
+# Create the screen object
+# The size is determined by the constant SCREEN_WIDTH and SCREEN_HEIGHT
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # Create groups to hold enemy sprites and all sprites
 # - enemies is used for collision detection and position updates
