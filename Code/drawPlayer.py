@@ -53,7 +53,7 @@ while running:
 
     # Update the player sprite based on user keypresses
     player.update(pressed_keys)
-    player.HittingWall(pressed_keys)
+    player.checkHittingWall(pressed_keys)
 
     # Fill the screen with black
     screen.fill((50, 200, 50))
