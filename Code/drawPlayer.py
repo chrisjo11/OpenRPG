@@ -30,7 +30,7 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 # - all_sprites is used for rendering
 all_sprites = pygame.sprite.Group()
 all_sprites.add(player)
-all_sprite.add(obstacle)
+all_sprites.add(obstacle)
 
 # Variable to keep the main loop running
 running = True
@@ -60,7 +60,7 @@ while running:
 
     # Draw the player on the screen
     screen.blit(player.image, (player.spritex, player.spritey))
-    screen.blit(player.image, ())
+    screen.blit(obstacle.image, (obstacle.obs_spritex, obstacle.obs_spritey))
 
     # Update the display
     pygame.display.flip()
