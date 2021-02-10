@@ -16,7 +16,7 @@ pygame.init()
 
 # Instantiate player. Right now, this is just a rectangle.
 player = Player()
-obstacle = Obstacle(0, 0)
+obstacle = Obstacle(100, 0, 'Rock.png')
 
 SCREEN_WIDTH = player.SCREEN_WIDTH
 SCREEN_HEIGHT = player.SCREEN_HEIGHT

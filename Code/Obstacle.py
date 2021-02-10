@@ -8,10 +8,10 @@ import random
 # Updated to conform to flake8 and black standards
 from pygame.locals import *
 class Obstacle(pygame.sprite.Sprite):
-    def __init__(self, obs_spritex, obs_spritey):
+    def __init__(self, obs_spritex, obs_spritey, filename):
         super(Obstacle, self).__init__()
         self.surf = pygame.Surface((75, 25))
-        self.obs_sprite_image = pygame.image.load('player.png')
+        self.obs_sprite_image = pygame.image.load(filename)
         self.image = pygame.transform.scale(self.obs_sprite_image,(50,50))
         self.obs_sprite_length = 50
         self.obs_sprite_width = 50
