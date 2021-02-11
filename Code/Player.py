@@ -38,7 +38,7 @@ class Player(pygame.sprite.Sprite):
         if pressed_keys[K_RIGHT]:
             self.spritex += 0.3
     
-    def checkHittingWall(self, pressed_keys):
+    def checkHittingWall(self):
         if self.spritex < 0:
             self.spritex = 0
         if self.spritex + self.sprite_width > self.SCREEN_WIDTH:
@@ -49,15 +49,15 @@ class Player(pygame.sprite.Sprite):
             self.spritey = self.SCREEN_HEIGHT - self.sprite_height
     
     def checkHittingObstacle(self, obstacle):
-        #If it is hitting the left side
-        if self.spritex > obstacle.obs_spritex:
+        #If it is hitting the left side of object
+        if self.spritex < obstacle.obs_spritex + obstacle.obs_sprite_width:
+            self.spritex = obstacle.obs_spritex + obstacle.obs_sprite_width
+        #If it is hitting the right side of object
+        if self.spritex + self.sprite_width > obstacle.obs_spritex:
             self.spritex = obstacle.obs_spritex
-        #If it is hitting the right side
-        if self.spritex + self.sprite_length < obstacle.obs_spritex + obstacle.obs_sprite_length:
-            self.spritex = obstacle.obs_spritex + obstacle.obs_sprite_length
-        #If it is hitting the top side
+        #If it is hitting the top side of object
         if self.spritey > obstacle.obs_spritey:
             self.spritey = obstacle.obs_spritey
-        #If it is hitting the bottom
-        if self.spritey + self.sprite_width > self.obs:
-            self.spritey = obstacle.obs_spritey - obstacle.obs_sprite_width
+        #If it is hitting the bottom of object
+        if self.spritey + self.sprite_height < obstacle.obs_spritey + obstacle.obs_sprite_height:
+            self.spritey = obstacle.obs_spritey + obstacle.obs_sprite_height

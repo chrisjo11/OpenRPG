@@ -16,7 +16,9 @@ pygame.init()
 
 # Instantiate player. Right now, this is just a rectangle.
 player = Player()
-obstacle = Obstacle(0, 0, 'Rock.png')
+obstacle = Obstacle(500, 500, 'Rock.png')
+obstacleList = [obstacle]
+
 
 SCREEN_WIDTH = player.SCREEN_WIDTH
 SCREEN_HEIGHT = player.SCREEN_HEIGHT
@@ -51,9 +53,12 @@ while running:
     # Get the set of keys pressed and check for user input
     pressed_keys = pygame.key.get_pressed()
 
+    for obstacle in obstacleList:
+        player.checkHittingObstacle(obstacle)
+
     # Update the player sprite based on user keypresses
     player.update(pressed_keys)
-    player.checkHittingWall(pressed_keys)
+    player.checkHittingWall()
 
     # Fill the screen with black
     screen.fill((50, 200, 50))
