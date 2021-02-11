@@ -13,7 +13,7 @@ class Obstacle(pygame.sprite.Sprite):
         self.surf = pygame.Surface((75, 25))
         self.obs_sprite_image = pygame.image.load(filename)
         self.image = pygame.transform.scale(self.obs_sprite_image,(50,50))
-        self.obs_sprite_length = 50
+        self.obs_sprite_height = 50
         self.obs_sprite_width = 50
         self.obs_spritex = obs_spritex
         self.obs_spritey = obs_spritey
