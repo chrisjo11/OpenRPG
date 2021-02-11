@@ -16,7 +16,7 @@ pygame.init()
 
 # Instantiate player. Right now, this is just a rectangle.
 player = Player()
-obstacle = Obstacle(500, 500, 'Rock.png')
+obstacle = Obstacle(100, 100, 'Rock.png')
 obstacleList = [obstacle]
 
 
@@ -53,8 +53,8 @@ while running:
     # Get the set of keys pressed and check for user input
     pressed_keys = pygame.key.get_pressed()
 
-    for obstacle in obstacleList:
-        player.checkHittingObstacle(obstacle)
+    #for obstacle in obstacleList:
+    #    player.checkHittingObstacle(obstacle)
 
     # Update the player sprite based on user keypresses
     player.update(pressed_keys)
@@ -69,3 +69,4 @@ while running:
 
     # Update the display
     pygame.display.flip()
+    
