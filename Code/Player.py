@@ -18,7 +18,7 @@ class Player(pygame.sprite.Sprite):
         super(Player, self).__init__()
         self.surf = pygame.Surface((75, 25))
         self.sprite_image = pygame.image.load('player.png')
-        self.image = pygame.transform.scale(self.sprite_image,(50,50))
+        self.image = pygame.transform.scale(self.sprite_image,(40,50))
         self.sprite_width = 50
         self.sprite_height = 50
         self.spritex = 10
@@ -48,7 +48,7 @@ class Player(pygame.sprite.Sprite):
         if self.spritey + self.sprite_height >= self.SCREEN_HEIGHT:
             self.spritey = self.SCREEN_HEIGHT - self.sprite_height
     
-    def checkHittingObstacle(self, pressed_keys, obstacle):
+    def checkHittingObstacle(self, obstacle):
         #If it is hitting the left side
         if self.spritex > obstacle.obs_spritex:
             self.spritex = obstacle.obs_spritex
