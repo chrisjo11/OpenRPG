@@ -17,3 +17,5 @@ class Obstacle(pygame.sprite.Sprite):
         self.obs_sprite_width = 50
         self.obs_spritex = obs_spritex
         self.obs_spritey = obs_spritey
+    def is_collided_with(self, sprite):
+        return self.rect.colliderect(sprite.rect)
