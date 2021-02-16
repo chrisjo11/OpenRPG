@@ -1,7 +1,7 @@
 # Import the pygame module
 import pygame
 
-
+import Obstacle
 
 # Import random for random numbers
 import random
@@ -23,8 +23,9 @@ class Player(pygame.sprite.Sprite):
         self.sprite_height = 50
         self.spritex = 0
         self.spritey = 0
-        self.SCREEN_HEIGHT = 600
-        self.SCREEN_WIDTH = 800
+        self.SCREEN_HEIGHT = 1000
+        self.SCREEN_WIDTH = 1000
+        self.hitbox = self.image.get_rect()
        
 
     # Move the sprite based on user keypresses

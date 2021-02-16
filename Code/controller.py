@@ -53,12 +53,15 @@ while running:
     # Get the set of keys pressed and check for user input
     pressed_keys = pygame.key.get_pressed()
 
-    #for obstacle in obstacleList:
-    #    player.checkHittingObstacle(obstacle)
+
 
     # Update the player sprite based on user keypresses
     player.update(pressed_keys)
     player.checkHittingWall()
+    collide = obstacle.is_collided_with(player)
+    if collide:
+        print("COLLISION")
+
 
     # Fill the screen with black
     screen.fill((50, 200, 50))

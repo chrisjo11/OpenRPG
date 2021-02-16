@@ -1,6 +1,5 @@
 # Import the pygame module
 import pygame
-
 # Import random for random numbers
 import random
 
@@ -17,5 +16,7 @@ class Obstacle(pygame.sprite.Sprite):
         self.obs_sprite_width = 50
         self.obs_spritex = obs_spritex
         self.obs_spritey = obs_spritey
+        self.obs_hitbox = self.image.get_rect()
+
     def is_collided_with(self, sprite):
-        return self.rect.colliderect(sprite.rect)
+        return self.obs_hitbox.colliderect(sprite.hitbox)
