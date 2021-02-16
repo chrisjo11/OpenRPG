@@ -58,7 +58,7 @@ while running:
     # Update the player sprite based on user keypresses
     player.update(pressed_keys)
     player.checkHittingWall()
-    collide = obstacle.is_collided_with(player)
+    collide = player.is_collided_with(obstacle)
     if collide:
         print("COLLISION")
 

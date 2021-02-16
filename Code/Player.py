@@ -17,7 +17,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
         self.surf = pygame.Surface((75, 25))
-        self.sprite_image = pygame.image.load('player.png')
+        self.sprite_image = pygame.image.load('dot.png')
         self.image = pygame.transform.scale(self.sprite_image,(40,50))
         self.sprite_width = 50
         self.sprite_height = 50
@@ -25,7 +25,7 @@ class Player(pygame.sprite.Sprite):
         self.spritey = 0
         self.SCREEN_HEIGHT = 1000
         self.SCREEN_WIDTH = 1000
-        self.hitbox = self.image.get_rect()
+        self.hitbox = self.sprite_image.get_rect()
        
 
     # Move the sprite based on user keypresses
@@ -48,17 +48,6 @@ class Player(pygame.sprite.Sprite):
             self.spritey = 0
         if self.spritey + self.sprite_height >= self.SCREEN_HEIGHT:
             self.spritey = self.SCREEN_HEIGHT - self.sprite_height
-    
-    def checkHittingObstacle(self, obstacle):
-        #If it is hitting the right side of object
-        if self.spritex < obstacle.obs_spritex + obstacle.obs_sprite_width:
-            self.spritex = obstacle.obs_spritex + obstacle.obs_sprite_width
-        #If it is hitting the left side of object
-        if self.spritex + self.sprite_width > obstacle.obs_spritex:
-            self.spritex = obstacle.obs_spritex
-        #If it is hitting the top side of object
-        if self.spritey + self.sprite_height > obstacle.obs_spritey:
-            self.spritey = obstacle.obs_spritey
-        #If it is hitting the bottom of object
-        if self.spritey < obstacle.obs_spritey + obstacle.obs_sprite_height:
-            self.spritey = obstacle.obs_spritey + obstacle.obs_sprite_height
+
+    def is_collided_with(self, obstacle):
+        return self.hitbox.colliderect(obstacle.obs_hitbox)
