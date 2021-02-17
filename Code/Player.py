@@ -25,8 +25,9 @@ class Player(pygame.sprite.Sprite):
         self.spritey = 0
         self.SCREEN_HEIGHT = 1000
         self.SCREEN_WIDTH = 1000
-        self.hitbox = self.sprite_image.get_rect()
-       
+        
+    def getHitbox(self):
+        return pygame.Rect(self.spritex, self.spritey, self.sprite_width, self.sprite_height)
 
     # Move the sprite based on user keypresses
     def update(self, pressed_keys):
@@ -48,6 +49,3 @@ class Player(pygame.sprite.Sprite):
             self.spritey = 0
         if self.spritey + self.sprite_height >= self.SCREEN_HEIGHT:
             self.spritey = self.SCREEN_HEIGHT - self.sprite_height
-
-    def is_collided_with(self, obstacle):
-        return self.hitbox.colliderect(obstacle.obs_hitbox)
