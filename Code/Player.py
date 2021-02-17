@@ -17,28 +17,34 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
         self.surf = pygame.Surface((75, 25))
-        self.sprite_image = pygame.image.load('dot.png')
+        self.sprite_image = pygame.image.load('player.png')
         self.image = pygame.transform.scale(self.sprite_image,(40,50))
-        self.sprite_width = 50
+        self.sprite_width = 40
         self.sprite_height = 50
         self.spritex = 0
         self.spritey = 0
         self.SCREEN_HEIGHT = 1000
         self.SCREEN_WIDTH = 1000
+        self.lastKeyPressed
         
     def getHitbox(self):
         return pygame.Rect(self.spritex, self.spritey, self.sprite_width, self.sprite_height)
 
     # Move the sprite based on user keypresses
-    def update(self, pressed_keys):
-        if pressed_keys[K_UP]:
-            self.spritey -= 0.3
-        if pressed_keys[K_DOWN]:
-            self.spritey += 0.3
-        if pressed_keys[K_LEFT]:
-            self.spritex -= 0.3
-        if pressed_keys[K_RIGHT]:
-            self.spritex += 0.3
+    def update(self, pressed_keys, lastkey):
+        if condition:
+            if pressed_keys[K_UP]:
+                self.spritey -= 0.3
+                self.lastKeyPressed = "Up"
+            elif pressed_keys[K_DOWN]:
+                self.spritey += 0.3
+                self.lastKeyPressed = "Down"
+            elif pressed_keys[K_LEFT]:
+                self.spritex -= 0.3
+                self.lastKeyPressed = "Left"
+            elif pressed_keys[K_RIGHT]:
+                self.spritex += 0.3
+                self.lastKeyPressed = "Right"
     
     def checkHittingWall(self):
         if self.spritex < 0:
