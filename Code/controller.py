@@ -61,9 +61,7 @@ while running:
     obstacleHitbox = obstacle.getHitbox()
 
     collide = playerHitbox.colliderect(obstacleHitbox)
-    if collide:
-        player.update(pressed_keys, player.lastKeyPressed) # doing the thing for the arrow keys
-    player.update(pressed_keys, True)
+    player.update(pressed_keys, collide, player.lastKeyPressed)
 
 
 
@@ -76,4 +74,3 @@ while running:
 
     # Update the display
     pygame.display.flip()
-    
