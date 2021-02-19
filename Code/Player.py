@@ -23,8 +23,8 @@ class Player(pygame.sprite.Sprite):
         self.sprite_height = 50
         self.spritex = 0
         self.spritey = 0
-        self.SCREEN_HEIGHT = 1000
-        self.SCREEN_WIDTH = 1000
+        self.SCREEN_HEIGHT = 700
+        self.SCREEN_WIDTH = 700
         self.lastKeyPressed = None
         
     def getHitbox(self):
@@ -37,28 +37,28 @@ class Player(pygame.sprite.Sprite):
                 self.spritey -= 0.3
                 self.lastKeyPressed = "Up"
             else:
-                self.spritey += 0.4
+                self.spritey += 5
                 self.lastKeyPressed = "Up"
         elif pressed_keys[K_DOWN]:
             if not (lastkey == "Down" and isCollided):
                 self.spritey += 0.3
                 self.lastKeyPressed = "Down"
             else:
-                self.spritey -= 0.4
+                self.spritey -= 5
                 self.lastKeyPressed = "Down"
         elif pressed_keys[K_LEFT]:
             if not (lastkey == "Left" and isCollided):
                 self.spritex -= 0.3
                 self.lastKeyPressed = "Left"
             else:
-                self.spritex += 0.4
+                self.spritex += 5
                 self.lastKeyPressed = "Left"
         elif pressed_keys[K_RIGHT]:
             if not (lastkey == "Right" and isCollided):
                 self.spritex += 0.3
                 self.lastKeyPressed = "Right"
             else:
-                self.sprite -= 0.4
+                self.spritex -= 5
                 self.lastKeyPressed = "Right"
     
     def checkHittingWall(self):
