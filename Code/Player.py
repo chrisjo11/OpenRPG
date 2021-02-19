@@ -32,18 +32,34 @@ class Player(pygame.sprite.Sprite):
 
     # Move the sprite based on user keypresses
     def update(self, pressed_keys, isCollided, lastkey):
-        if pressed_keys[K_UP] and not(lastkey == "Up" and isCollided):
-            self.spritey -= 0.3
-            self.lastKeyPressed = "Up"
-        elif pressed_keys[K_DOWN] and not(lastkey == "Down" and isCollided):
-            self.spritey += 0.3
-            self.lastKeyPressed = "Down"
-        elif pressed_keys[K_LEFT] and not(lastkey == "Left" and isCollided):
-            self.spritex -= 0.3
-            self.lastKeyPressed = "Left"
-        elif pressed_keys[K_RIGHT] and not(lastkey == "Right" and isCollided):
-            self.spritex += 0.3
-            self.lastKeyPressed = "Right"
+        if pressed_keys[K_UP]:
+            if not (lastkey == "Up" and isCollided):
+                self.spritey -= 0.3
+                self.lastKeyPressed = "Up"
+            else:
+                self.spritey += 0.4
+                self.lastKeyPressed = "Up"
+        elif pressed_keys[K_DOWN]:
+            if not (lastkey == "Down" and isCollided):
+                self.spritey += 0.3
+                self.lastKeyPressed = "Down"
+            else:
+                self.spritey -= 0.4
+                self.lastKeyPressed = "Down"
+        elif pressed_keys[K_LEFT]:
+            if not (lastkey == "Left" and isCollided):
+                self.spritex -= 0.3
+                self.lastKeyPressed = "Left"
+            else:
+                self.spritex += 0.4
+                self.lastKeyPressed = "Left"
+        elif pressed_keys[K_RIGHT]:
+            if not (lastkey == "Right" and isCollided):
+                self.spritex += 0.3
+                self.lastKeyPressed = "Right"
+            else:
+                self.sprite -= 0.4
+                self.lastKeyPressed = "Right"
     
     def checkHittingWall(self):
         if self.spritex < 0:
