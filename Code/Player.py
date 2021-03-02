@@ -13,11 +13,14 @@ from pygame.locals import *
 # Define a player object by extending pygame.sprite.Sprite
 # The surface drawn on the screen is now an attribute of 'player'
 
+spriteList = []
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
+        self.lastKeyPressed = None
         self.surf = pygame.Surface((75, 25))
-        self.sprite_image = pygame.image.load('player.png')
+        self.sprite_image = pygame.image.load('Sprites/player.png')
         self.image = pygame.transform.scale(self.sprite_image,(40,50))
         self.sprite_width = 40
         self.sprite_height = 50
@@ -25,7 +28,6 @@ class Player(pygame.sprite.Sprite):
         self.spritey = 0
         self.SCREEN_HEIGHT = 700
         self.SCREEN_WIDTH = 700
-        self.lastKeyPressed = None
         
     def getHitbox(self):
         return pygame.Rect(self.spritex, self.spritey, self.sprite_width, self.sprite_height)
