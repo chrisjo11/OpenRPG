@@ -13,14 +13,20 @@ from pygame.locals import *
 # Define a player object by extending pygame.sprite.Sprite
 # The surface drawn on the screen is now an attribute of 'player'
 
-spriteList = []
+spriteList = {
+    "Down": "playerDown.png",
+    "Up" : "playerUp.png",
+    "Left": "playerLeft.png",
+    "Right": "playerRight.png"
+}
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
         self.lastKeyPressed = None
         self.surf = pygame.Surface((75, 25))
-        self.sprite_image = pygame.image.load('Sprites/player.png')
+        self.sprite = None
+        self.sprite_image = pygame.image.load(spriteList["Down"])
         self.image = pygame.transform.scale(self.sprite_image,(40,50))
         self.sprite_width = 40
         self.sprite_height = 50
@@ -62,6 +68,19 @@ class Player(pygame.sprite.Sprite):
             else:
                 self.spritex -= 5
                 self.lastKeyPressed = "Right"
+
+        if self.lastKeyPressed == "Up":
+            self.sprite = spriteList["Up"]
+        if self.lastKeyPressed == "Down":
+            self.sprite = spriteList["Down"]
+        if self.lastKeyPressed == "Left":
+            self.sprite = spriteList["Left"]
+        if self.lastKeyPressed == "Right":
+            self.sprite = spriteList["Right"]
+
+        self.sprite_image = pygame.image.load(self.sprite)
+        self.image = pygame.transform.scale(self.sprite_image,(40,50))
+
     
     def checkHittingWall(self):
         if self.spritex < 0:
