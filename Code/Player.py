@@ -71,12 +71,14 @@ class Player(pygame.sprite.Sprite):
 
         if self.lastKeyPressed == "Up":
             self.sprite = spriteList["Up"]
-        if self.lastKeyPressed == "Down":
+        elif self.lastKeyPressed == "Down":
             self.sprite = spriteList["Down"]
-        if self.lastKeyPressed == "Left":
+        elif self.lastKeyPressed == "Left":
             self.sprite = spriteList["Left"]
-        if self.lastKeyPressed == "Right":
+        elif self.lastKeyPressed == "Right":
             self.sprite = spriteList["Right"]
+        else:
+            self.sprite = spriteList["Down"]
 
         self.sprite_image = pygame.image.load(self.sprite)
         self.image = pygame.transform.scale(self.sprite_image,(40,50))
