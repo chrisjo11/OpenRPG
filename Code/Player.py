@@ -1,17 +1,10 @@
-# Import the pygame module
+# Imports
 import pygame
-
 import Obstacle
-
-# Import random for random numbers
 import random
-
-# Import pygame.locals for easier access to key coordinates
-# Updated to conform to flake8 and black standards
 from pygame.locals import *
 
 # Makes a list of filenames
-
 spriteList = {
     "Down": "playerDown.png",
     "Up" : "playerUp.png",
@@ -34,11 +27,11 @@ class Player(pygame.sprite.Sprite):
         self.SCREEN_HEIGHT = 700
         self.SCREEN_WIDTH = 700
         
-    def getHitbox(self):
+    def getHitbox(self): # Gets a hitbox for the player
         return pygame.Rect(self.spritex, self.spritey, self.sprite_width, self.sprite_height)
 
-    # Move the sprite based on user keypresses
-    def update(self, pressed_keys, isCollided, lastkey):
+    def update(self, pressed_keys, isCollided, lastkey): # Updates with every frame
+        # Moves according to the key that is currently being pressed, and sets the last key pressed.
         if pressed_keys[K_UP]:
             if not (lastkey == "Up" and isCollided):
                 self.spritey -= 0.5
@@ -68,6 +61,7 @@ class Player(pygame.sprite.Sprite):
                 self.spritex -= 5
                 self.lastKeyPressed = "Right"
 
+        # I
         if self.lastKeyPressed == "Up":
             self.sprite = spriteList["Up"]
         elif self.lastKeyPressed == "Down":

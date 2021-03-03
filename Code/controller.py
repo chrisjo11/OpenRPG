@@ -1,13 +1,7 @@
-# Import the pygame module
+# Imports
 import pygame
-
-# Import random for random numbers
 import random
-
-# Import pygame.locals for easier access to key coordinates
-# Updated to conform to flake8 and black standards
 from pygame.locals import *
-
 from Player import Player
 from Obstacle import Obstacle
 
@@ -59,8 +53,10 @@ while running:
     player.checkHittingWall()
     playerHitbox = player.getHitbox()
 
-    # Fill the screen with green
-    screen.fill((50, 200, 50))
+    #create a background
+    bg = pygame.image.load('background.jpeg')
+    bg_scaled = pygame.transform.scale(bg,(700,700))
+    screen.blit(bg_scaled,(0,0))
 
     for item in obstacleList:
         collide = playerHitbox.colliderect(item.getHitbox())
