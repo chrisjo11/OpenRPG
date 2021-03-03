@@ -14,10 +14,11 @@ from Obstacle import Obstacle
 # Initialize pygame
 pygame.init()
 
-# Instantiate player. Right now, this is just a rectangle.
+# Instantiate player. Also add obstacles
 player = Player()
-obstacle = Obstacle(100, 100, 'Rock.png')
-obstacleList = [obstacle]
+obstacleRock = Obstacle(100, 100, 'rock.png')
+obstacleBush = Obstacle(100, 100, 'bush.png')
+obstacleList = [obstacleRock, obstacleBush]
 
 
 SCREEN_WIDTH = player.SCREEN_WIDTH
@@ -32,7 +33,8 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 # - all_sprites is used for rendering
 all_sprites = pygame.sprite.Group()
 all_sprites.add(player)
-all_sprites.add(obstacle)
+for item in obstacleList:
+    all_sprites.add(item)
 
 # Variable to keep the main loop running
 running = True
@@ -53,24 +55,20 @@ while running:
     # Get the set of keys pressed and check for user input
     pressed_keys = pygame.key.get_pressed()
 
-
-
     # Update the player sprite based on user keypresses
     player.checkHittingWall()
     playerHitbox = player.getHitbox()
-    obstacleHitbox = obstacle.getHitbox()
 
-    collide = playerHitbox.colliderect(obstacleHitbox)
-    player.update(pressed_keys, collide, player.lastKeyPressed)
-
-
-
-    # Fill the screen with black
+    # Fill the screen with green
     screen.fill((50, 200, 50))
+
+    for item in obstacleList:
+        collide = playerHitbox.colliderect(item.getHitbox())
+        screen.blit(item.image, (item.obs_spritex, item.obs_spritey))
+    player.update(pressed_keys, collide, player.lastKeyPressed)
 
     # Draw the player on the screen
     screen.blit(player.image, (player.spritex, player.spritey))
-    screen.blit(obstacle.image, (obstacle.obs_spritex, obstacle.obs_spritey))
 
     # Update the display
     pygame.display.flip()

@@ -10,22 +10,21 @@ import random
 # Updated to conform to flake8 and black standards
 from pygame.locals import *
 
-# Define a player object by extending pygame.sprite.Sprite
-# The surface drawn on the screen is now an attribute of 'player'
+# Makes a list of filenames
 
 spriteList = {
     "Down": "playerDown.png",
     "Up" : "playerUp.png",
     "Left": "playerLeft.png",
-    "Right": "playerRight.png"
+    "Right": "playerRight.png",
 }
 
+# Player class
 class Player(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self): # Initiate player class
         super(Player, self).__init__()
         self.lastKeyPressed = None
         self.surf = pygame.Surface((75, 25))
-        self.sprite = None
         self.sprite_image = pygame.image.load(spriteList["Down"])
         self.image = pygame.transform.scale(self.sprite_image,(40,50))
         self.sprite_width = 40
@@ -42,28 +41,28 @@ class Player(pygame.sprite.Sprite):
     def update(self, pressed_keys, isCollided, lastkey):
         if pressed_keys[K_UP]:
             if not (lastkey == "Up" and isCollided):
-                self.spritey -= 0.3
+                self.spritey -= 0.5
                 self.lastKeyPressed = "Up"
             else:
                 self.spritey += 5
                 self.lastKeyPressed = "Up"
         elif pressed_keys[K_DOWN]:
             if not (lastkey == "Down" and isCollided):
-                self.spritey += 0.3
+                self.spritey += 0.5
                 self.lastKeyPressed = "Down"
             else:
                 self.spritey -= 5
                 self.lastKeyPressed = "Down"
         elif pressed_keys[K_LEFT]:
             if not (lastkey == "Left" and isCollided):
-                self.spritex -= 0.3
+                self.spritex -= 0.5
                 self.lastKeyPressed = "Left"
             else:
                 self.spritex += 5
                 self.lastKeyPressed = "Left"
         elif pressed_keys[K_RIGHT]:
             if not (lastkey == "Right" and isCollided):
-                self.spritex += 0.3
+                self.spritex += 0.5
                 self.lastKeyPressed = "Right"
             else:
                 self.spritex -= 5
@@ -82,7 +81,6 @@ class Player(pygame.sprite.Sprite):
 
         self.sprite_image = pygame.image.load(self.sprite)
         self.image = pygame.transform.scale(self.sprite_image,(40,50))
-
     
     def checkHittingWall(self):
         if self.spritex < 0:
