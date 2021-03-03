@@ -54,7 +54,7 @@ while running:
     playerHitbox = player.getHitbox()
 
     #create a background
-    bg = pygame.image.load('background.jpeg')
+    bg = pygame.image.load('grass.png')
     bg_scaled = pygame.transform.scale(bg,(700,700))
     screen.blit(bg_scaled,(0,0))
 
