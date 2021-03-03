@@ -11,7 +11,7 @@ pygame.init()
 # Instantiate player. Also add obstacles
 player = Player()
 obstacleRock = Obstacle(100, 100, 'rock.png')
-obstacleBush = Obstacle(100, 100, 'bush.png')
+obstacleBush = Obstacle(200, 200, 'bush.png')
 obstacleList = [obstacleRock, obstacleBush]
 
 
