@@ -12,7 +12,8 @@ pygame.init()
 player = Player()
 obstacleRock = Obstacle(100, 100, 'rock.png')
 obstacleBush = Obstacle(200, 200, 'bush.png')
-obstacleList = [obstacleRock, obstacleBush]
+obstacleBush2 = Obstacle(300, 200, 'bush2.png')
+obstacleList = [obstacleRock, obstacleBush, obstacleBush2]
 
 
 SCREEN_WIDTH = player.SCREEN_WIDTH
@@ -59,9 +60,9 @@ while running:
     screen.blit(bg_scaled,(0,0))
 
     for item in obstacleList:
-        collide = playerHitbox.colliderect(item.getHitbox())
         screen.blit(item.image, (item.obs_spritex, item.obs_spritey))
-    player.update(pressed_keys, collide, player.lastKeyPressed)
+        collide = playerHitbox.colliderect(item.getHitbox())
+        player.update(pressed_keys, collide, player.lastKeyPressed)
 
     # Draw the player on the screen
     screen.blit(player.image, (player.spritex, player.spritey))
