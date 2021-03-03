@@ -62,7 +62,7 @@ while running:
     for item in obstacleList:
         screen.blit(item.image, (item.obs_spritex, item.obs_spritey))
         collide = playerHitbox.colliderect(item.getHitbox())
-        player.update(pressed_keys, collide, player.lastKeyPressed)
+        player.update(pressed_keys, collide)
 
     # Draw the player on the screen
     screen.blit(player.image, (player.spritex, player.spritey))

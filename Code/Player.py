@@ -16,7 +16,6 @@ spriteList = {
 class Player(pygame.sprite.Sprite):
     def __init__(self): # Initiate player class
         super(Player, self).__init__()
-        self.lastKeyPressed = None
         self.surf = pygame.Surface((75, 25))
         self.sprite_image = pygame.image.load(spriteList["Down"])
         self.image = pygame.transform.scale(self.sprite_image,(40,50))
@@ -30,45 +29,39 @@ class Player(pygame.sprite.Sprite):
     def getHitbox(self): # Gets a hitbox for the player
         return pygame.Rect(self.spritex, self.spritey, self.sprite_width, self.sprite_height)
 
-    def update(self, pressed_keys, isCollided, lastkey): # Updates with every frame
+    def update(self, pressed_keys, isCollided): # Updates with every frame
         # Moves according to the key that is currently being pressed, and sets the last key pressed.
         if pressed_keys[K_UP]:
-            if not (lastkey == "Up" and isCollided):
+            if not (pressed_keys[K_UP] and isCollided):
                 self.spritey -= 0.5
-                self.lastKeyPressed = "Up"
             else:
-                self.spritey += 5
-                self.lastKeyPressed = "Up"
+                self.spritey += 30
         elif pressed_keys[K_DOWN]:
-            if not (lastkey == "Down" and isCollided):
+            if not (pressed_keys[K_DOWN] and isCollided):
                 self.spritey += 0.5
-                self.lastKeyPressed = "Down"
+               
             else:
-                self.spritey -= 5
-                self.lastKeyPressed = "Down"
+                self.spritey -= 30
+               
         elif pressed_keys[K_LEFT]:
-            if not (lastkey == "Left" and isCollided):
+            if not (pressed_keys[K_LEFT] and isCollided):
                 self.spritex -= 0.5
-                self.lastKeyPressed = "Left"
             else:
-                self.spritex += 5
-                self.lastKeyPressed = "Left"
+                self.spritex += 30
         elif pressed_keys[K_RIGHT]:
-            if not (lastkey == "Right" and isCollided):
+            if not (pressed_keys[K_RIGHT] and isCollided):
                 self.spritex += 0.5
-                self.lastKeyPressed = "Right"
             else:
-                self.spritex -= 5
-                self.lastKeyPressed = "Right"
+                self.spritex -= 30
 
         # I
-        if self.lastKeyPressed == "Up":
+        if pressed_keys[K_UP]:
             self.sprite = spriteList["Up"]
-        elif self.lastKeyPressed == "Down":
+        elif pressed_keys[K_DOWN]:
             self.sprite = spriteList["Down"]
-        elif self.lastKeyPressed == "Left":
+        elif pressed_keys[K_LEFT]:
             self.sprite = spriteList["Left"]
-        elif self.lastKeyPressed == "Right":
+        elif pressed_keys[K_RIGHT]:
             self.sprite = spriteList["Right"]
         else:
             self.sprite = spriteList["Down"]
