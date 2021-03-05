@@ -11,6 +11,13 @@ pygame.init()
 # Instantiate player. Also add obstacles
 player = Player()
 
+stage1 = open("stageOne.txt")
+stage1List = []
+
+for line in stage1:
+    lineStrip = line.strip()
+    stage1List.append(lineStrip)
+
 SCREEN_WIDTH = player.SCREEN_WIDTH
 SCREEN_HEIGHT = player.SCREEN_HEIGHT
 
@@ -20,7 +27,14 @@ obstacleBush2 = Obstacle(300, 200, 'bush.png')
 
 obstacleList = [obstacleRock, obstacleBush, obstacleBush2]
 
+i = 0
+for obs in stage1List:
+    obstacleList.append(Obstacle(i, 0, 'tree.png'))
+    i += 50
+
 portalObject = Obstacle(SCREEN_WIDTH - 60, SCREEN_HEIGHT - 60, 'portal.png')
+
+print(obstacleList)
 
 # Create the screen object
 # The size is determined by the constant SCREEN_WIDTH and SCREEN_HEIGHT
@@ -70,8 +84,8 @@ while running:
 
     if portalObject.inPortal(player):
         score += 1
-        player.spritex = 0
-        player.spritey = 0
+        player.spritex = 100
+        player.spritey = 100
     
     # set the pygame window name
     pygame.display.set_caption('Open RPG')

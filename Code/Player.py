@@ -22,8 +22,8 @@ class Player(pygame.sprite.Sprite):
         self.sprite = spriteList["Down"]
         self.sprite_width = 40
         self.sprite_height = 50
-        self.spritex = 0
-        self.spritey = 0
+        self.spritex = 100
+        self.spritey = 100
         self.SCREEN_HEIGHT = 700
         self.SCREEN_WIDTH = 700
         
