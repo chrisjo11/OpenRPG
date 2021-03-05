@@ -15,8 +15,9 @@ SCREEN_WIDTH = player.SCREEN_WIDTH
 SCREEN_HEIGHT = player.SCREEN_HEIGHT
 
 obstacleRock = Obstacle(100, 100, 'rock.png')
-obstacleBush = Obstacle(200, 200, 'bush.png')
-obstacleBush2 = Obstacle(300, 200, 'bush2.png')
+obstacleBush = Obstacle(200, 200, 'tree.png')
+obstacleBush2 = Obstacle(300, 200, 'bush.png')
+
 obstacleList = [obstacleRock, obstacleBush, obstacleBush2]
 
 portalObject = Obstacle(SCREEN_WIDTH - 60, SCREEN_HEIGHT - 60, 'portal.png')
@@ -75,7 +76,7 @@ while running:
     # set the pygame window name
     pygame.display.set_caption('Open RPG')
     font = pygame.font.Font('freesansbold.ttf', 32)
-    text = font.render("Score: " + str(score), True, (0, 255, 0), (0, 0, 255))
+    text = font.render("Score: " + str(score), True, (255, 255, 255), (0, 150, 50))
     screen.blit(text, (10, 660))
  
     # Draw the player on the screen
