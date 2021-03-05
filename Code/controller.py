@@ -10,14 +10,16 @@ pygame.init()
 
 # Instantiate player. Also add obstacles
 player = Player()
+
+SCREEN_WIDTH = player.SCREEN_WIDTH
+SCREEN_HEIGHT = player.SCREEN_HEIGHT
+
 obstacleRock = Obstacle(100, 100, 'rock.png')
 obstacleBush = Obstacle(200, 200, 'bush.png')
 obstacleBush2 = Obstacle(300, 200, 'bush2.png')
 obstacleList = [obstacleRock, obstacleBush, obstacleBush2]
 
-
-SCREEN_WIDTH = player.SCREEN_WIDTH
-SCREEN_HEIGHT = player.SCREEN_HEIGHT
+portalObject = Obstacle(SCREEN_WIDTH - 60, SCREEN_HEIGHT - 60, 'portal.png')
 
 # Create the screen object
 # The size is determined by the constant SCREEN_WIDTH and SCREEN_HEIGHT
@@ -33,6 +35,7 @@ for item in obstacleList:
 
 # Variable to keep the main loop running
 running = True
+score = 0
 
 # Main loop
 while running:
@@ -64,8 +67,21 @@ while running:
         collide = playerHitbox.colliderect(item.getHitbox())
         player.update(pressed_keys, collide)
 
+    if portalObject.inPortal(player):
+        score += 1
+        player.spritex = 0
+        player.spritey = 0
+    
+    # set the pygame window name
+    pygame.display.set_caption('Open RPG')
+    font = pygame.font.Font('freesansbold.ttf', 32)
+    text = font.render("Score: " + str(score), True, (0, 255, 0), (0, 0, 255))
+    screen.blit(text, (10, 660))
+ 
     # Draw the player on the screen
     screen.blit(player.image, (player.spritex, player.spritey))
+
+    screen.blit(portalObject.image, (portalObject.obs_spritex, portalObject.obs_spritey))
 
     # Update the display
     pygame.display.flip()

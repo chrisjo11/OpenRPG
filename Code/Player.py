@@ -19,6 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.surf = pygame.Surface((75, 25))
         self.sprite_image = pygame.image.load(spriteList["Down"])
         self.image = pygame.transform.scale(self.sprite_image,(40,50))
+        self.sprite = spriteList["Down"]
         self.sprite_width = 40
         self.sprite_height = 50
         self.spritex = 0
@@ -30,7 +31,7 @@ class Player(pygame.sprite.Sprite):
         return pygame.Rect(self.spritex, self.spritey, self.sprite_width, self.sprite_height)
 
     def update(self, pressed_keys, isCollided): # Updates with every frame
-        # Moves according to the key that is currently being pressed, and sets the last key pressed.
+        # Moves according to the key that is currently being pressed
         if pressed_keys[K_UP]:
             if not (pressed_keys[K_UP] and isCollided):
                 self.spritey -= 0.5
@@ -39,7 +40,6 @@ class Player(pygame.sprite.Sprite):
         elif pressed_keys[K_DOWN]:
             if not (pressed_keys[K_DOWN] and isCollided):
                 self.spritey += 0.5
-               
             else:
                 self.spritey -= 30
                
@@ -63,8 +63,6 @@ class Player(pygame.sprite.Sprite):
             self.sprite = spriteList["Left"]
         elif pressed_keys[K_RIGHT]:
             self.sprite = spriteList["Right"]
-        else:
-            self.sprite = spriteList["Down"]
 
         self.sprite_image = pygame.image.load(self.sprite)
         self.image = pygame.transform.scale(self.sprite_image,(40,50))
